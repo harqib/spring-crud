@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <div th:insert="~{fragments :: header}"></div>
+</head>
+
+    <body>
+        <!-- Navbar -->
+        <div th:replace="~{fragments :: navbar}"></div>
+        <div class="container container-fluid">
+            <div class="container flex-row mt-5 mb-2 justify-content-between align-items-center" style="display: flex">
+                <h5>List Employees (<span th:text="${total}"></span>)</h5>
+                <button type="button" class="btn btn-outline-secondary">New Employee</button>
+            </div>
+
+            <table class="table" >
+                <thead>
+                <tr class="table-primary" style="border-radius: 50%;">
+                    <th scope="col">Code</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Firstname</th>
+                    <th scope="col">Lastname</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Activated</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-hover" th:each="employee, index : ${employees}">
+                    <td th:text="${employee.id}"></td>
+                    <td><img th:src="'data:image/jpeg;base64,' + ${base64Images[__${index.index}__]}" alt="pic" height="60px" /></td>
+                    <td th:text="${employee.firstName}"></td>
+                    <td th:text="${employee.lastName}"></td>
+                    <td th:text="${employee.email}"></td>
+                    <td th:text="${employee.activated ? 'No' : 'Yes'}"></td>
+                    <td>
+                        <div class="  h-auto  d-inline-block action-wrapper" >
+                            <a href="" class=" btn btn-info btn-sm" >Update</a>
+                            <a href="" class=" btn btn-warning btn-sm" data-bs-toggle="modal" id="updateButton" data-bs-target="#deleteModal">Delete</a>
+                            <a href="" class=" btn btn-danger btn-sm" th:text="${employee.activated ? 'Activate' : 'Deactivate'}"></a>
+                        </div>
+                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Title</h1>
+                                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure of deleting <span th:text="${employee.firstName}  +  ${employee.lastName}"></span>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button th:href="@{/crud/employee/delete/{email}(email=${employee.email})}" type="button" class="btn btn-primary">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Footer -->
+        <div th:insert="~{fragments :: footer}"></div>
+    </body>
+</html>

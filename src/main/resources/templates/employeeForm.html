@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Employee Form</title>
+</head>
+<body>
+<h1>Create Employee</h1>
+    <form
+        th:object="${employeeDTO}"
+        th:action="@{/crud/employees/new}"
+        method="post"
+        enctype="multipart/form-data">
+        <div>
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" th:field="*{firstName}" />
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+        </div>
+        <div>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" th:field="*{lastName}" />
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}" />
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        </div>
+        <div>
+            <label for="imageUrl">Image:</label>
+            <input type="file" id="imageUrl" name="imageUrl" accept="image/*" />
+            <span th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}"></span>
+        </div>
+        <div>
+            <input type="submit" value="Create" />
+        </div>
+    </form>
+</body>
+</html>
