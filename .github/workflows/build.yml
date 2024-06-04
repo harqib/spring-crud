@@ -19,6 +19,12 @@ jobs:
           distribution: 'temurin'
       - name: Build with Maven
         run: mvn package  # Replace with your build command if different
+        env:
+          MYSQL_HOST: localhost  # Replace with actual host
+          MYSQL_PORT: 3306  # Replace with actual port
+          MYSQL_DATABASE: crud  # Replace with actual database name
+          MYSQL_USER: root  # Replace with actual username
+          MYSQL_PASSWORD: root  # Replace with actual password (securely store)
 
       - name: Archive JAR file (optional)
         uses: actions/upload-artifact@v3
