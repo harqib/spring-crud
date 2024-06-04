@@ -2,9 +2,9 @@ name: Build and Deploy Spring Boot Employees CRUD App - Huda Arqib
 
 on:
   push:
-    branches: [ main ]  # Change to your branch name if needed
+    branches: [ master ]  # Change to your branch name if needed
   pull_request:
-    branches: [ main ]  # Change to your branch name if needed
+    branches: [ master ]  # Change to your branch name if needed
 
 jobs:
   build:
