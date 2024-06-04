@@ -16,7 +16,7 @@ jobs:
         with:
           java-version: 17  # Adjust if you use a different Java version
           # caches: maven   Cache Maven packages to speed up builds
-          distribution: 'adoptopenjdk'
+          # distribution: 'adoptopenjdk'
       - name: Build with Maven
         run: mvn package  # Replace with your build command if different
 
